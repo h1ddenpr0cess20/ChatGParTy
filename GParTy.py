@@ -43,10 +43,6 @@ here are the last few messages:
             name = re.findall(r"^[^\n:]+:", self.response_text)
             if len(name)>0:
                 self.response_text = self.response_text.lstrip(name[0])
-            # if self.response_text.startswith('"'):
-            #     self.response_text = self.response_text.lstrip('"')
-            #     self.response_text = self.response_text.rstrip('"')
-            
             return self.response_text
         except Exception as e:
             print(e)
@@ -110,7 +106,6 @@ class conversation:
 
         #first speaker starts conversation
         speaker = random.choice(self.participants)
-        #index = self.participants.index(speaker)
         participants = [x for x in self.participants_names if x != speaker.personality]
         intro = f"start a {self.convo_type} about {self.topic} with {participants}.  the setting is {self.setting}."
         message = speaker.respond(intro)
@@ -120,7 +115,6 @@ class conversation:
 
         while True:
             time.sleep(6)
-            #history = self.history[-7:]
             decision = self.next_speaker(self.history[-8:])
             logging.info(f"     *** {decision[0].upper()} is speaking next because {decision[1]} ***")
             speaker_personality = decision[0]
