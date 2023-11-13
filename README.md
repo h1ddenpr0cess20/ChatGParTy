@@ -1,5 +1,5 @@
 # ChatGParTy
-Make an unlimited number of AI characters have a natural-sounding conversation
+Make an unlimited number of AI characters have a natural-sounding conversation in a terminal
 
 (Project name likely to change)
 
@@ -18,7 +18,7 @@ python3 GParTy.py
 ```
 Choose the conversation type, topic, setting, and characters, then sit back and enjoy.
 
-Topic and setting can be left blank and will default to "anything" and "anywhere".
+Type, topic, and setting can be left blank and will default to "conversation", "anything", and "anywhere".
 
 Characters can be pretty much anything you want.  A name, character description, object, emoji, etc.  
 
