@@ -12,7 +12,6 @@ import logging
 from rich.console import Console
 import time
 import os
-import re
 import sys
 
 class character:
@@ -25,7 +24,7 @@ class character:
 
     def respond(self, history):
         message = [
-            {"role": "system", "content": f"assume the personality of {self.personality}. roleplay as them and stay in character at all times. do not speak as anyone else. keep your responses short and conversational."},
+            {"role": "system", "content": f"assume the personality of {self.personality}. roleplay as them and stay in character at all times. do not speak as anyone else. your responses must be short, one paragraph maximum. "},
             {"role": "user", "content": f'''you're the next speaker in a {self.convo_type} about {self.topic}.  the setting is {self.setting}.
 here are the last few messages:
 
@@ -40,9 +39,7 @@ here are the last few messages:
                 messages=message)
             self.response_text = response.choices[0].message.content
             
-            name = re.findall(r"^[^\n:]+:", self.response_text)
-            if len(name)>0:
-                self.response_text = self.response_text.lstrip(name[0])
+  
             return self.response_text
         except Exception as e:
             print(e)
@@ -148,14 +145,10 @@ if __name__ == "__main__":
             break
 
     conversation_type = types[type]
-
     topic = input("Enter a topic: ")
-
     if topic == '':
         topic = "anything"
-
     setting = input("Enter a setting: ")
-
     if setting == '':
         setting = "anywhere"
 
@@ -166,13 +159,11 @@ if __name__ == "__main__":
     while True:
         character_name = input("Enter character name (blank to stop adding characters): ")
         if character_name == '':
-            break
-            
+            break         
         character_instance = character(character_name, conversation_type, topic, setting)
         characters.append(character_instance)
     if len(characters) > 1:
         convo = conversation(conversation_type, topic, setting, *characters)
-
         convo.start()
     else:
         sys.exit(1)
