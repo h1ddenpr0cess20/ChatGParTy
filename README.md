@@ -15,4 +15,6 @@ Enter your OpenAI api key in the code
 ```
 python3 GParTy.py
 ```
+Choose the conversation type, topic, setting, and characters, then sit back and enjoy.
+
 Ctrl-C to exit
