@@ -13,6 +13,7 @@ from rich.console import Console
 import time
 import os
 import re
+import sys
 
 class character:
     def __init__(self, personality, convo_type, topic, setting):
@@ -76,7 +77,7 @@ class conversation:
 
     {history}'''}]
                 response = openai.chat.completions.create(
-                    model='gpt-4-1106-preview', 
+                    model='gpt-4-1106-preview', #this will not work properly with gpt-3.5-turbo, do not change
                     temperature=0, 
                     messages=message)
                 response_text = response.choices[0].message.content
@@ -155,9 +156,12 @@ if __name__ == "__main__":
         character_name = input("Enter character name (blank to stop adding characters): ")
         if character_name == '':
             break
+            
         character_instance = character(character_name, conversation_type, topic, setting)
         characters.append(character_instance)
+    if len(characters) > 1:
+        test = conversation(conversation_type, topic, setting, *characters)
 
-    test = conversation(conversation_type, topic, setting, *characters)
-
-    test.start()
+        test.start()
+    else:
+        sys.exit(1)
