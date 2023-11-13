@@ -25,7 +25,7 @@ class character:
 
     def respond(self, history):
         message = [
-            {"role": "system", "content": f"assume the personality of {self.personality}. roleplay as them and stay in character at all times. do not speak as anyone else. your responses should be short and conversational."},
+            {"role": "system", "content": f"assume the personality of {self.personality}. roleplay as them and stay in character at all times. do not speak as anyone else. keep your responses short and conversational."},
             {"role": "user", "content": f'''you're the next speaker in a {self.convo_type} about {self.topic}.  the setting is {self.setting}.
 here are the last few messages:
 
@@ -99,7 +99,7 @@ class conversation:
         pretty = Console()
         pretty.width=80
         pretty.wrap_text = True
-        names = ' and '.join(self.participants_names)
+        names = ', '.join(self.participants_names)
         #information about conversation for the log
         logging.info(f"\n{names.upper()} have a {self.convo_type} about {self.topic}.  the setting is {self.setting}.")
 
@@ -160,8 +160,8 @@ if __name__ == "__main__":
         character_instance = character(character_name, conversation_type, topic, setting)
         characters.append(character_instance)
     if len(characters) > 1:
-        test = conversation(conversation_type, topic, setting, *characters)
+        convo = conversation(conversation_type, topic, setting, *characters)
 
-        test.start()
+        convo.start()
     else:
         sys.exit(1)
