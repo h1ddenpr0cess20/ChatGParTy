@@ -25,7 +25,7 @@ class character:
 
     def respond(self, history):
         message = [
-            {"role": "system", "content": f"assume the personality of {self.personality}. roleplay as them and stay in character at all times. your responses should be short and conversational, between one word to one paragraph in length."},
+            {"role": "system", "content": f"assume the personality of {self.personality}. roleplay as them and stay in character at all times. do not speak as anyone else. your responses should be short and conversational."},
             {"role": "user", "content": f'''you're the next speaker in a {self.convo_type} about {self.topic}.  the setting is {self.setting}.
 here are the last few messages:
 
@@ -93,7 +93,7 @@ class conversation:
     
     def start(self):
         # logging
-        logging.basicConfig(filename='cc.log', format='%(message)s')
+        logging.basicConfig(filename='GParTy.log', level=logging.INFO, format='%(message)s')
         
         # text wrap and color
         pretty = Console()
