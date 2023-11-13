@@ -98,7 +98,7 @@ class conversation:
 
         names = ', '.join(self.participants_names)
         #information about conversation for the log
-        logging.info(f"\n{names.upper()} have a {self.convo_type} about {self.topic}.  the setting is {self.setting}.")
+        logging.info(f"\n{names} have a {self.convo_type} about {self.topic}.  the setting is {self.setting}.".upper())
 
         #first speaker starts conversation
         speaker = random.choice(self.participants)
@@ -112,14 +112,14 @@ class conversation:
         #pretty.print(f"\n[bold][{colors[cc]}]{speaker.personality.upper()}[/bold]\n{message}[{colors[cc]}]\n", justify="left", highlight=False)
         #cc+=1 #choose next color in list
 
-        logging.info(f"{speaker.personality.upper()}: {message}")
+        logging.info(f"\n{speaker.personality.upper()}: {message}\n")
         
         
         #rest of conversation
         while True:
             time.sleep(6) #delay
             decision = self.next_speaker(self.history[-8:]) #choose next speaker
-            logging.info(f"     *** {decision[0].upper()} is speaking next because {decision[1]} ***") #log speaker choice and reasoning
+            logging.info(f"\n*** {decision[0].upper()} is speaking next because {decision[1]} ***\n") #log speaker choice and reasoning
             speaker_personality = decision[0]
 
             #figure out what character object this personality refers to
@@ -135,7 +135,7 @@ class conversation:
             # if cc == len(colors):
             #     cc = 0
 
-            logging.info(f"{speaker.personality.upper()}: {message}")
+            logging.info(f"\n{speaker.personality.upper()}: {message}\n")
 
 if __name__ == "__main__":
     api_key = "API_KEY"
