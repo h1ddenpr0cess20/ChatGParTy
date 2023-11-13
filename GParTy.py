@@ -30,12 +30,11 @@ here are the last few messages:
 
 {history}
 
-[if the {self.convo_type} is getting repetitive, feel free to move on to a related subject]
-'''}
+[if the {self.convo_type} is getting repetitive, feel free to move on to a related subject]'''}
             ]
         try:
             response = openai.chat.completions.create(
-                model="gpt-4-1106-preview", 
+                model="gpt-4-1106-preview", #change to gpt-3.5-turbo if you want to save money
                 temperature=1, 
                 messages=message)
             self.response_text = response.choices[0].message.content
@@ -72,11 +71,10 @@ class conversation:
             for x in range(3):
                 message = [{"role": "user", 
                             "content": f'''based on this {self.convo_type} history and listed participants, reply with the name of the most likely next speaker as it appears before their line and an explanation of your reasoning in the format of "<name>|<reason>" and nothing else.
-                            .
 
-                        participant names: {', '.join(self.participants_names)}  
-    
-                        {history}'''}]
+    participant names: {', '.join(self.participants_names)}  
+
+    {history}'''}]
                 response = openai.chat.completions.create(
                     model='gpt-4-1106-preview', 
                     temperature=0, 
