@@ -38,8 +38,6 @@ here are the last few messages:
                 temperature=1, 
                 messages=message)
             self.response_text = response.choices[0].message.content
-            
-  
             return self.response_text
         except Exception as e:
             print(e)
@@ -51,13 +49,9 @@ class conversation:
         self.topic = topic
         self.setting = setting
         self.participants = list(participants)
-        self.participants_names = []
-        for p in self.participants:
-            self.participants_names.append(p.personality)
-
+        self.participants_names = [p.personality for p in self.participants]
         self.history = [f"[{self.convo_type} hasn't started yet]"]
     
-
     def next_speaker(self, history):
         if len(self.participants) == 2:
             last_message = self.history[-1]
