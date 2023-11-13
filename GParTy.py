@@ -133,20 +133,31 @@ if __name__ == "__main__":
     os.system('clear')
     
     types = {
-        1: "conversation", 
-        2: "debate",  
-        3: "argument",
-        4: "meeting",
-        5: "brainstorming session",
-        6: "lighthearted conversation"
+        "1": "conversation", 
+        "2": "debate",  
+        "3": "argument",
+        "4": "meeting",
+        "5": "brainstorming session",
+        "6": "lighthearted conversation"
         }
     typelist = ", ".join([f"{key}: {value}" for key, value in types.items()])
-    type = int(input(f"[{typelist}]\nEnter a conversation type: "))
+    print(f"[{typelist}]")
+    while True:
+        type = input("Enter a conversation type: ")
+        if type in types:
+            break
+
     conversation_type = types[type]
 
     topic = input("Enter a topic: ")
 
+    if topic == '':
+        topic = "anything"
+
     setting = input("Enter a setting: ")
+
+    if setting == '':
+        setting = "anywhere"
 
     # Create a list to store character instances
     characters = []
