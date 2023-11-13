@@ -25,7 +25,7 @@ class character:
     #sets the personality and responds to the history list
     def respond(self, history):
         message = [
-            {"role": "system", "content": f"assume the personality of {self.personality}. roleplay as them and stay in character at all times. do not speak as anyone else. your responses should be around a sentence long. "},
+            {"role": "system", "content": f"assume the personality of {self.personality}. roleplay as them and stay in character at all times. do not speak as anyone else. your responses should be around a sentence long. do not preface them with your name."},
             {"role": "user", "content": f'''you're the next speaker in a {self.convo_type} about {self.topic}.  the setting is {self.setting}.
 here are the last few messages:
 
@@ -94,7 +94,7 @@ class conversation:
         pretty = Console()
         pretty.width=80
         pretty.wrap_text = True
-        colors = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan'] #list of colors to use to colorize messages, will add more/change later
+        #colors = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan'] #list of colors to use to colorize messages, will add more/change later
 
         names = ', '.join(self.participants_names)
         #information about conversation for the log
@@ -107,10 +107,10 @@ class conversation:
         message = speaker.respond(intro) #start conversation
         self.history.append(f"{speaker.personality}: {message}") #add response to history
 
-        cc = 0 #color choice
-        #pretty.print(f"\n[bold]{speaker.personality.upper()}[/bold]\n{message}\n", justify="left", highlight=False) #no color
-        pretty.print(f"\n[bold][{colors[cc]}]{speaker.personality.upper()}[/bold]\n{message}[{colors[cc]}]\n", justify="left", highlight=False)
-        cc+=1 #choose next color in list
+        #cc = 0 #color choice
+        pretty.print(f"\n[bold]{speaker.personality.upper()}[/bold]\n{message}\n", justify="left", highlight=False) #no color
+        #pretty.print(f"\n[bold][{colors[cc]}]{speaker.personality.upper()}[/bold]\n{message}[{colors[cc]}]\n", justify="left", highlight=False)
+        #cc+=1 #choose next color in list
 
         logging.info(f"{speaker.personality.upper()}: {message}")
         
@@ -129,11 +129,11 @@ class conversation:
             message = speaker.respond(self.history[-8:]) #respond to the last several messages of history
             self.history.append(f"{speaker.personality}: {message}") #add response to history
 
-            #pretty.print(f"[bold]{speaker.personality.upper()}[/bold]\n{message}\n", justify="left", highlight=False) #no color
-            pretty.print(f"[bold][{colors[cc]}]{speaker.personality.upper()}[/bold]\n{message}[{colors[cc]}]\n", justify="left", highlight=False) 
-            cc+=1
-            if cc == len(colors):
-                cc = 0
+            pretty.print(f"[bold]{speaker.personality.upper()}[/bold]\n{message}\n", justify="left", highlight=False) #no color
+            # pretty.print(f"[bold][{colors[cc]}]{speaker.personality.upper()}[/bold]\n{message}[{colors[cc]}]\n", justify="left", highlight=False) 
+            # cc+=1
+            # if cc == len(colors):
+            #     cc = 0
 
             logging.info(f"{speaker.personality.upper()}: {message}")
 
@@ -157,6 +157,9 @@ if __name__ == "__main__":
     while True:
         type = input("Enter a conversation type: ")
         if type in types:
+            break
+        if type == '':
+            type = '1'
             break
 
     conversation_type = types[type]
