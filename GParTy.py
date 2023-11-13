@@ -65,9 +65,9 @@ class conversation:
         if len(self.participants) == 2:
             last_message = self.history[-1]
             if last_message.startswith(self.participants_names[0]):
-                return [self.participants_names[1], "because there are only two participants"]
+                return [self.participants_names[1], "there are only two participants"]
             else:
-                return [self.participants_names[0], "because there are only two participants"]
+                return [self.participants_names[0], "there are only two participants"]
         else:
             for x in range(3):
                 message = [{"role": "user", 
@@ -89,7 +89,7 @@ class conversation:
             try:
                 return next_speaker
             except:
-                return [random.choice(self.participants_names), "because the function failed so we choose randomly"]
+                return [random.choice(self.participants_names), "the function failed so we choose randomly"]
     
     def start(self):
         # logging
