@@ -89,7 +89,7 @@ class conversation:
     def start(self):
         #logging
         logging.basicConfig(filename='GParTy.log', level=logging.INFO, format='%(message)s')
-        
+        logging.getLogger('httpx').setLevel(logging.ERROR) #fixes unwanted output in log
         #text wrap and formatting
         pretty = Console()
         pretty.width=80
@@ -119,7 +119,7 @@ class conversation:
         while True:
             time.sleep(6) #delay
             decision = self.next_speaker(self.history[-8:]) #choose next speaker
-            logging.info(f"\n*** {decision[0].upper()} is speaking next because {decision[1]} ***\n") #log speaker choice and reasoning
+            logging.info(f"\n       *** {decision[0].upper()} is speaking next because {decision[1]} ***\n") #log speaker choice and reasoning
             speaker_personality = decision[0]
 
             #figure out what character object this personality refers to
