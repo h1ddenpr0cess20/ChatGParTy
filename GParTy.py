@@ -101,7 +101,8 @@ class conversation:
         logging.info(f"\n{names} have a {self.convo_type} about {self.topic}.  the setting is {self.setting}.".upper())
 
         #first speaker starts conversation
-        speaker = random.choice(self.participants)
+        #speaker = random.choice(self.participants)
+        speaker = self.participants[0]
         participants = [x for x in self.participants_names if x != speaker.personality] #list of participants without current speaker
         intro = f"start a {self.convo_type} about {self.topic} with {participants}.  the setting is {self.setting}."
         message = speaker.respond(intro) #start conversation
@@ -119,7 +120,7 @@ class conversation:
         while True:
             time.sleep(6) #delay
             decision = self.next_speaker(self.history[-8:]) #choose next speaker
-            logging.info(f"\n       *** {decision[0].upper()} is speaking next because {decision[1]} ***\n") #log speaker choice and reasoning
+            logging.info(f"       *** {decision[0].upper()} is speaking next because {decision[1]} ***") #log speaker choice and reasoning
             speaker_personality = decision[0]
 
             #figure out what character object this personality refers to
@@ -176,7 +177,7 @@ if __name__ == "__main__":
 
     # Get user input for characters
     while True:
-        character_name = input("Enter character name (blank to stop adding characters): ")
+        character_name = input("Enter character name (blank to stop adding): ")
         if character_name == '':
             break         
         character_instance = character(character_name, conversation_type, topic, setting)
