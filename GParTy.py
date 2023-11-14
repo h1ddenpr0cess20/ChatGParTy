@@ -66,7 +66,7 @@ class conversation:
         else:
             for x in range(2): #retry if it didn't work the first time
                 message = [{"role": "user", 
-                            "content": f'''based on this {self.convo_type} history and listed participants, reply with the name of the most likely next speaker as it appears before their line and an explanation of your reasoning in the format of "<name>|<reason>" and nothing else.
+                            "content": f'''based on this {self.convo_type} history and listed participants, reply with the name of the most likely next speaker as it appears before their line and an explanation of your reasoning in the format of "<name>|<reason>" and nothing else.  avoid a round-robin style.
 
     participant names: {', '.join(self.participants_names)}  
 
