@@ -156,7 +156,7 @@ if __name__ == "__main__":
         "8": "therapy session",
         "9": "rap battle",
         
-        #other languages commented out languages to save screen space.
+        #other languages commented out to save screen space.
 
         # "10": "conversation in french",
         # "11": "conversation in spanish",
