@@ -57,7 +57,7 @@ class conversation:
         #only two characters
         if len(self.participants) == 2:
             last_message = self.history[-1]
-            if last_message.startswith(self.participants_names[0]):
+            if last_message.startswith(self.participants_names[0]+":"):
                 return [self.participants_names[1], "there are only two participants"]
             else:
                 return [self.participants_names[0], "there are only two participants"]
