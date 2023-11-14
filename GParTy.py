@@ -151,8 +151,25 @@ if __name__ == "__main__":
         "3": "argument",
         "4": "meeting",
         "5": "brainstorming session",
-        "6": "lighthearted conversation"
-        }
+        "6": "lighthearted conversation",
+        "7": "joke-telling contest",
+        "8": "therapy session",
+        "9": "rap battle",
+        
+        #other languages commented out languages to save screen space.
+
+        # "10": "conversation in french",
+        # "11": "conversation in spanish",
+        # "12": "conversation in chinese",
+        # "13": "conversation in japanese",
+        # "14": "conversation in arabic",
+        # "15": "conversation in hebrew",
+        # "16": "conversation in russian",
+        # "17": "conversation in italian",
+        # "18": "conversation in german",
+        # "19": "conversation in korean",
+        # "20": "conversation in hindi"
+        } # types must fit the format of "having a {type}"
     typelist = ", ".join([f"{key}: {value}" for key, value in types.items()])
     print(f"[{typelist}]")
     while True:
