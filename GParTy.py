@@ -139,7 +139,10 @@ class conversation:
             logging.info(f"\n{speaker.personality.upper()}: {message}\n")
 
 if __name__ == "__main__":
-    api_key = "API_KEY"
+    #put a key here and uncomment if not already set in environment
+    #os.environ['OPENAI_API_KEY'] = "api_key"
+    
+    api_key = os.environ.get("OPENAI_API_KEY")
     openai = OpenAI(api_key=api_key)
 
     #clear terminal    
@@ -154,21 +157,7 @@ if __name__ == "__main__":
         "6": "lighthearted conversation",
         "7": "joke-telling contest",
         "8": "therapy session",
-        "9": "rap battle",
-        
-        #other languages commented out to save screen space.
-
-        # "10": "conversation in french",
-        # "11": "conversation in spanish",
-        # "12": "conversation in chinese",
-        # "13": "conversation in japanese",
-        # "14": "conversation in arabic",
-        # "15": "conversation in hebrew",
-        # "16": "conversation in russian",
-        # "17": "conversation in italian",
-        # "18": "conversation in german",
-        # "19": "conversation in korean",
-        # "20": "conversation in hindi"
+      
         } # types must fit the format of "having a {type}"
     typelist = ", ".join([f"{key}: {value}" for key, value in types.items()])
     print(f"[{typelist}]")
